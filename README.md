@@ -6,7 +6,9 @@
     <a href="#backend_challenge_about">Sobre</a> • 
     <a href="#backend_challenge_install">Instalação</a> • 
     <a href="#backend_challenge_docs">Documentação</a> • 
-    <a href="#backend_challenge_demo">Demo</a>
+    <a href="#backend_challenge_demo">Demo</a> • 
+    <a href="#backend_challenge_refs">Referências</a>
+
     <h3 align="center">Backend Challenge</h3>
 
   <p align="center">
@@ -57,6 +59,11 @@ Se você deseja reproduzir esse projeto, siga esses passos:
 
 ## :pushpin: Demo
 <p id="#backend_challenge_demo">Você pode acessar a demo <a href="http://laravel-user-crud.herokuapp.com">aqui</a>.  </p>
+
+## :pushpin: Referências
+<p align="justify" id="#backend_challenge_refs">
+   
+</p>
 
 <footer>
     <hr></hr>
