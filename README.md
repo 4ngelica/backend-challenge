@@ -11,9 +11,9 @@
 
     <h3 align="center">Backend Challenge</h3>
 
-  <p align="center">
+<p align="center">
     Simulação de carteira digital para realizar transações financeiras entre usuários do tipo pessoa física (customer) e pessoa jurídica (seller).
-   </p>
+</p>
 
 
 ## :pushpin: Sobre
