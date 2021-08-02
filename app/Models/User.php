@@ -17,6 +17,11 @@ class User extends Model
       'type'
     ];
 
+    public function wallet()
+    {
+        return $this->hasOne(Wallet::Class, 'user_id');
+    }
+
     public function rules()
     {
       return [
@@ -39,10 +44,6 @@ class User extends Model
 
     public function getWallet()
     {
-      return Wallet::where($this->id, 'user_id')->first();
-    }
-
-    public function getUserType(){
-
+      return Wallet::where('user_id', $this->id)->first();
     }
 }
