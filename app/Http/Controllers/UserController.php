@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+
 
 class UserController extends Controller
 {
@@ -26,17 +28,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new user.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Store a newly created user in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -45,6 +37,15 @@ class UserController extends Controller
     {
         $request->validate($this->user->rules(), $this->user->feedback());
         $user = $this->user->create($request->all());
+        // $user->password = bcrypt($request->password);
+
+        // $user = new User();
+        // $user->getWallet();
+
+        $user->wallet()->create([
+          'balance' => 0.00,
+        ]);
+
         return response()->json($user, 201);
     }
 
@@ -57,32 +58,10 @@ class UserController extends Controller
     public function show($id)
     {
       $user = $this->user->find($id);
-      if($user === null) {
+        if($user === null) {
           return response()->json(['erro' => 'User does not exist.'], 404) ;
-      }
+        }
 
       return response()->json($user, 200);
-    }
-
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  *
-    //  * @param  \App\Models\User  $user
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function edit(User $user)
-    // {
-    //     //
-    // }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
     }
 }
