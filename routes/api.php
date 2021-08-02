@@ -30,6 +30,7 @@ Route::post('user', [UserController::class, 'store'])->name('store.user');
 
 //Needs authentication
 Route::group(['middleware' => ['auth.api']], function() {
+  Route::post('logout', [AuthController::class, 'logout'])->name('logout');
   Route::get('wallet/test/{id}', [WalletController::class, 'test'])->name('test.wallet');
   Route::get('wallet/{id}', [WalletController::class, 'show'])->name('show.wallet');
   Route::get('transaction/{id}', [TransactionController::class, 'index'])->name('index.transaction');

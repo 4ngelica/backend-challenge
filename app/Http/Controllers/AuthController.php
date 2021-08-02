@@ -20,6 +20,37 @@ class AuthController extends Controller
       return $this->respondWithToken($token);
     }
 
+    public function logout( Request $request ) {
+
+        $token = $request->header( 'Authorization' );
+
+        try {
+            JWTAuth::parseToken()->invalidate( $token );
+
+            return response()->json( [
+                'error'   => false,
+                'message' => trans( 'auth.logged_out' )
+            ] );
+        } catch ( TokenExpiredException $exception ) {
+            return response()->json( [
+                'error'   => true,
+                'message' => trans( 'auth.token.expired' )
+
+            ], 401 );
+        } catch ( TokenInvalidException $exception ) {
+            return response()->json( [
+                'error'   => true,
+                'message' => trans( 'auth.token.invalid' )
+            ], 401 );
+
+        } catch ( JWTException $exception ) {
+            return response()->json( [
+                'error'   => true,
+                'message' => trans( 'auth.token.missing' )
+            ], 500 );
+        }
+    }
+
     protected function respondWithToken($token)
     {
       return response()->json([
