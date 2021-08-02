@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Model
+class User extends Authenticatable implements JWTSubject
 {
     use HasFactory;
+    use Notifiable;
 
     protected $fillable = [
       'name',
@@ -42,8 +46,39 @@ class User extends Model
       ];
     }
 
+    // public function createUserWallet()
+    // {
+    //     wallet()->create([
+    //       'balance' => 0.00,
+    //     ]);
+    // }
+
+    public function getUserType(){
+      $type = User::where('user_id', $this->id)->pluck('type');
+      if($type == 1){
+        return 'customer';
+      }else{
+        return 'seller';
+      }
+    }
+
+    public function setPasswordAttribute($value)
+    {
+    $this->attributes['password'] = bcrypt($value);
+    }
+
     public function getWallet()
     {
       return Wallet::where('user_id', $this->id)->first();
     }
+
+    public function getJWTIdentifier()
+    {
+      return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+   {
+       return [];
+   }
 }
