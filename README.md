@@ -22,6 +22,8 @@ Esse projeto compreende um sistema de pagamentos entre usuários do tipo pessoa 
 
 As três entidades relacionais definidas são Carteira (wallet), Usuário (users) e Transação (transactions). Usuário e carteira apresentam uma relação de 1:1 e usuário/transação apresentam uma relação de 1:n. Quando um novo registro de usuário é gerado, uma carteira é associada a esse usuário com um saldo inicial de 0.00, carregando como chave estrangeira a user_id.
 
+![db](https://user-images.githubusercontent.com/47900225/127950677-11c60a43-ede7-4cbb-abb6-556213961f49.png)
+
 ## :pushpin: Próximos passos
 <p align="justify" id="#backend_challenge_next">
 <ul>
