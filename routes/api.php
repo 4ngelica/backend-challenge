@@ -8,7 +8,6 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\AuthController;
 
 
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,19 +20,15 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::post('login', [AuthController::class, 'login'])->name('login');
-
-
-//Doesnt need authentication
 Route::get('user', [UserController::class, 'index'])->name('index.user');
 Route::get('user/{id}', [UserController::class, 'show'])->name('show.user');
 Route::post('user', [UserController::class, 'store'])->name('store.user');
 
-//Needs authentication
 Route::group(['middleware' => ['auth.api']], function() {
   Route::post('logout', [AuthController::class, 'logout'])->name('logout');
-  Route::get('wallet/test/{id}', [WalletController::class, 'test'])->name('test.wallet');
-  Route::get('wallet/{id}', [WalletController::class, 'show'])->name('show.wallet');
-  Route::get('transaction/{id}', [TransactionController::class, 'index'])->name('index.transaction');
-  Route::get('transaction/{id}/{transactionId}', [TransactionController::class, 'show'])->name('show.transaction');
-  Route::post('transaction/{id}', [TransactionController::class, 'store'])->name('store.transaction');
+  Route::get('wallet', [WalletController::class, 'show'])->name('show.wallet');
+  Route::get('transaction', [TransactionController::class, 'index'])->name('index.transaction');
+  Route::post('transaction', [TransactionController::class, 'store'])->name('store.transaction');
+  Route::get('transaction/{id}', [TransactionController::class, 'show'])->name('show.transaction');
+  Route::delete('transaction/{id}', [TransactionController::class, 'delete'])->name('delete.transaction');
 });

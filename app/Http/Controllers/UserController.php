@@ -37,11 +37,6 @@ class UserController extends Controller
     {
         $request->validate($this->user->rules(), $this->user->feedback());
         $user = $this->user->create($request->all());
-        // $user->password = bcrypt($request->password);
-
-        // $user = new User();
-        // $user->getWallet();
-
         $user->wallet()->create([
           'balance' => 0.00,
         ]);

@@ -46,20 +46,8 @@ class User extends Authenticatable implements JWTSubject
       ];
     }
 
-    // public function createUserWallet()
-    // {
-    //     wallet()->create([
-    //       'balance' => 0.00,
-    //     ]);
-    // }
-
     public function getUserType(){
-      $type = User::where('user_id', $this->id)->pluck('type');
-      if($type == 1){
-        return 'customer';
-      }else{
-        return 'seller';
-      }
+      //
     }
 
     public function setPasswordAttribute($value)
